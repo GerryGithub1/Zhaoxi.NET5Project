@@ -1,0 +1,22 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model System.String
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div>
+    <h2>
+        @base.ViewData["User1"]
+    </h2>
+    <h2>
+        @base.TempData["User2"]
+    </h2>
+    <h2>
+        @base.ViewBag.User3
+    </h2>
+    <h2>
+        @Model
+    </h2>
+</div>
