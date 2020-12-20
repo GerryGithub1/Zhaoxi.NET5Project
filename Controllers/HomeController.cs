@@ -23,7 +23,7 @@ namespace Zhaoxi.NET5Project.Controllers
             base.ViewData["User1"] = "张三-成功";
             base.TempData["User2"] = "李四-111";
             base.ViewBag.User3 = "王五-失败";
-            object User4 = "赵六";
+            object User4 = "赵六111111";
             return View(User4);
         }
 
