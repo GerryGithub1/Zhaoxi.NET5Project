@@ -20,8 +20,8 @@ namespace Zhaoxi.NET5Project.Controllers
 
         public IActionResult Index()
         {
-            base.ViewData["User1"] = "张三111";
-            base.TempData["User2"] = "李四";
+            base.ViewData["User1"] = "张三";
+            base.TempData["User2"] = "李四-111";
             base.ViewBag.User3 = "王五";
             object User4 = "赵六";
             return View(User4);
