@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -37,6 +38,12 @@ namespace Zhaoxi.NET5Project
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.Run(async(context) => {
+                // ·ÀÖ¹ÂÒÂë
+                context.Response.ContentType = "text/html;charset=utf-8";
+                // SecretsKey
+                await context.Response.WriteAsync($"{Configuration["MyKey"]}_{Configuration["SecretsKey"]}");
+            });
             app.UseStaticFiles();
             app.UseSession();
             app.UseRouting();
