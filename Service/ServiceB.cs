@@ -8,10 +8,18 @@ namespace Zhaoxi.NET5Project.Web.Service
 {
     public class ServiceB : IServiceB
     {
-        public IServiceA serviceA { get; set; }
-        public ServiceB()
+        //public IServiceA ServiceA { get; set; }
+        private IServiceA injectserviceA;
+        private IServiceA serviceA;
+        public ServiceB(IServiceA serviceA)
         {
+            this.serviceA = serviceA;
             Console.WriteLine("调用空的构造函数");
+        }
+
+        public void SetDdd(IServiceA serviceA)
+        {
+            this.injectserviceA = serviceA;
         }
 
         /*public ServiceB(IServiceA serviceA)
@@ -21,6 +29,7 @@ namespace Zhaoxi.NET5Project.Web.Service
         public void CallServiceA()
         {
             serviceA.TestA();
+            //injectserviceA.TestA();
         }
     }
 }

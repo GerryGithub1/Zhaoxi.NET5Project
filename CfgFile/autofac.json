@@ -1,0 +1,24 @@
+{
+	"components": [
+		{
+			"type": "Zhaoxi.NET5Project.Web.Service.ServiceA,Zhaoxi.NET5Project.Web",
+			"services": [
+				{
+					"type": "Zhaoxi.NET5Project.Web.Interface.IServiceA,Zhaoxi.NET5Project.Web"
+				}
+			],
+			"instanceScope": "single-instance", //生命周期
+			"injectProperties": true // 属性注入 
+		},
+		{
+			"type": "Zhaoxi.NET5Project.Web.Service.ServiceB,Zhaoxi.NET5Project.Web",
+			"services": [
+				{
+					"type": "Zhaoxi.NET5Project.Web.Interface.IServiceB,Zhaoxi.NET5Project.Web"
+				}
+			],
+			"instanceScope": "single-instance", //生命周期
+			"injectProperties": true // 属性注入
+		}
+	]
+}

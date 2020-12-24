@@ -1,8 +1,10 @@
 using Autofac;
+using Autofac.Configuration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Configuration.Json;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -60,7 +62,7 @@ namespace Zhaoxi.NET5Project
             }*/
             #endregion
             #region 属性注入
-            {
+            /*{
                 ContainerBuilder containerBuilder = new ContainerBuilder();
                 containerBuilder.RegisterType<ServiceA>().As<IServiceA>();
                 containerBuilder.RegisterType<ServiceB>().As<IServiceB>().PropertiesAutowired();
@@ -68,9 +70,52 @@ namespace Zhaoxi.NET5Project
                 IServiceB serviceB = container.Resolve<IServiceB>();
                 serviceB.CallServiceA();
                 Console.WriteLine("ddd");
-            }
+            }*/
             #endregion
+            #region 方法注入
+            /* {
+                 ContainerBuilder containerBuilder = new ContainerBuilder();
+                 containerBuilder.RegisterType<ServiceA>().As<IServiceA>();
+                 containerBuilder.RegisterType<ServiceB>()
+                     .OnActivated(e => e.Instance.SetDdd(e.Context.Resolve<IServiceA>()))
+                     .As<IServiceB>();
+                 IContainer container = containerBuilder.Build();
+                 IServiceB serviceB = container.Resolve<IServiceB>();
+                 serviceB.CallServiceA();
+                 Console.WriteLine("ddd");
+             }*/
+            #endregion
+            #region 基于配置文件实现Autofac依赖注入
+            /*{
+                ContainerBuilder builder = new ContainerBuilder();
+                {
+                    IConfigurationBuilder config = new ConfigurationBuilder();
+                    // 读取autofac配置文件
+                    IConfigurationSource cfgBuidler = new JsonConfigurationSource()
+                    {
+                        Path = "CfgFile/autofac.json",
+                        ReloadOnChange = true
+                    };
+                    config.Add(cfgBuidler);
+                    ConfigurationModule configurationModule = new ConfigurationModule(config.Build());
+                    builder.RegisterModule(configurationModule);
+                }
+                IContainer container = builder.Build();
+                IServiceB serviceB = container.Resolve<IServiceB>();
+                serviceB.CallServiceA();
 
+
+            }*/
+            #endregion
+            services.AddTransient<IServiceA, ServiceA>();
+            services.AddTransient<IServiceB, ServiceB>();
+
+        }
+
+        public void ConfigureContainer(ContainerBuilder containerBuilder)
+        {
+            /*containerBuilder.RegisterType<ServiceA>().As<IServiceA>();
+            containerBuilder.RegisterType<ServiceB>().As<IServiceB>();*/
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

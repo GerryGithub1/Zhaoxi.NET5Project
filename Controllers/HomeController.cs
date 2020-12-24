@@ -6,16 +6,19 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using Zhaoxi.NET5Project.Models;
+using Zhaoxi.NET5Project.Web.Interface;
 
 namespace Zhaoxi.NET5Project.Controllers
 {
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
+        private readonly IServiceB serviceB;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(IServiceB serviceB,ILogger<HomeController> logger)
         {
-            _logger = logger;
+            this.serviceB = serviceB;
+            this._logger = logger;
         }
 
         public IActionResult Index()
@@ -25,6 +28,12 @@ namespace Zhaoxi.NET5Project.Controllers
             base.ViewBag.User3 = "王五-失败";
             object User4 = "赵六111111";
             return View(User4);
+        }
+
+        public IActionResult First()
+        {
+            serviceB.CallServiceA();
+            return View();
         }
 
         public IActionResult Privacy()
