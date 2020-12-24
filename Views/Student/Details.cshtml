@@ -1,0 +1,42 @@
+﻿
+@{
+    ViewData["Title"] = "Details";
+}
+@using Zhaoxi.NET5Project.DataRepositories
+@model Zhaoxi.NET5Project.Models.Student
+@*页面注入方式*@
+@inject IStudentRepository studentDAO
+
+@foreach (var item in studentDAO.GetStudents())
+{
+    <p>@item.Id====@item.Name====@item.Major</p>
+}
+
+<h1>Details</h1>
+<table>
+    <thead>
+        <tr>
+            <td colspan="2">学生详情页</td>
+        </tr>
+    </thead>
+    <tr>
+        <td>Id:</td>
+        <td>@Model.Id</td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td>@Model.Name</td>
+    </tr>
+    <tr>
+        <td>主修科目:</td>
+        <td>@Model.Major</td>
+    </tr>
+</table>
+@section Scripts {
+    <script type="text/javascript">
+        $(function () {
+            console.log("我是JS脚本");
+            alert("这是Details页面的脚本");
+        });
+    </script>
+}
