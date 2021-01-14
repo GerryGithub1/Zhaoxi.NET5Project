@@ -6,16 +6,16 @@ EXPOSE 80
 
 FROM 192.168.3.224/zhaoxi/mcr.microsoft.com/dotnet/sdk:5.0-buster-slim AS build
 WORKDIR /src
-COPY ["Zhaoxi.NET5Project.csproj", ""]
-RUN dotnet restore "./Zhaoxi.NET5Project.csproj"
+COPY ["Zhaoxi.NET5Project.Web.csproj", ""]
+RUN dotnet restore "./Zhaoxi.NET5Project.Web.csproj"
 COPY . .
 WORKDIR "/src/."
-RUN dotnet build "Zhaoxi.NET5Project.csproj" -c Release -o /app/build
+RUN dotnet build "Zhaoxi.NET5Project.Web.csproj" -c Release -o /app/build
 
 FROM build AS publish
-RUN dotnet publish "Zhaoxi.NET5Project.csproj" -c Release -o /app/publish
+RUN dotnet publish "Zhaoxi.NET5Project.Web.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Zhaoxi.NET5Project.dll"]
+ENTRYPOINT ["dotnet", "Zhaoxi.NET5Project.Web.dll"]
