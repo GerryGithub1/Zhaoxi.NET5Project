@@ -22,7 +22,7 @@
     <Content Update="CfgFile\autofac.json">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Update="CfgFile\log4net.Config">
+    <Content Update="CfgFile\log4net.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
