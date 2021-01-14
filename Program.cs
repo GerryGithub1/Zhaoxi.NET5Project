@@ -21,7 +21,7 @@ namespace Zhaoxi.NET5Project
             Host.CreateDefaultBuilder(args)
                 .ConfigureLogging(loggingBuilder =>
                 {  //配置log4Net配置文件的读取
-                   loggingBuilder.AddLog4Net("CfgFile/log4net.Config");
+                   loggingBuilder.AddLog4Net("CfgFile/log4net.config");
                 })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
