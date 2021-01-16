@@ -1,25 +1,25 @@
 ﻿apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: net5-deployment-115
+  name: net5-deployment-116
   labels:
-    app: net5
-    env: testing
+    app: net53
+    env: testing1
 spec:
   replicas: 3
   selector:
     matchLabels:
-      app: net5-115
-      env: testing-115
+      app: net5-116
+      env: testing-116
   template:
     metadata:
       labels:
-        app: net5-115
-        env: testing-115
+        app: net5-116
+        env: testing-116
     spec:
       containers:
       - name: net5
-        image: 192.168.3.224/zhaoxi/net5-20210114:v1
+        image: 192.168.3.224/zhaoxi/net5-4.0:latest
         ports:
         - name: http-port
           containerPort: 80
@@ -33,11 +33,11 @@ metadata:
     env: testing
 spec:
   selector:
-    app: net5-115
-    env: testing-115
+    app: net5-116
+    env: testing-116
   ports:
   - protocol: TCP
     port: 80
     targetPort: 80
-    nodePort: 30020
+    nodePort: 30050
   type: NodePort
